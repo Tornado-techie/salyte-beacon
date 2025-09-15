@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 // Import User model
-const User = require('../models/user');
+const User = require('../models/user.js');
 
 // Import middleware
 const { auth } = require('../middleware/auth');
@@ -591,3 +591,6 @@ router.delete('/account', auth, async (req, res) => {
 });
 
 module.exports = router;
+
+console.log("AUTH ROUTE DIR:", __dirname);
+console.log("Looking for:", require('path').join(__dirname, "../models/user.js"));
