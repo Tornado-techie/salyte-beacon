@@ -13,14 +13,14 @@ const User = require('../models/user.js');
 
 // Import middleware
 const { auth } = require('../middleware/auth');
-const rateLimiter = require('../middleware/rateLimiter');
+const ratelimiter = require('../middleware/ratelimiter');
 
 /**
  * @route   POST /api/auth/signup
  * @desc    Register new user
  * @access  Public
  */
-router.post('/signup', rateLimiter(5, 15), async (req, res) => {
+router.post('/signup', ratelimiter(5, 15), async (req, res) => {
     try {
         const { firstName, lastName, email, phone, password, role, location, newsletter } = req.body;
         
@@ -133,7 +133,7 @@ router.post('/signup', rateLimiter(5, 15), async (req, res) => {
  * @desc    Authenticate user and return token
  * @access  Public
  */
-router.post('/login', rateLimiter(10, 15), async (req, res) => {
+router.post('/login', ratelimiter(10, 15), async (req, res) => {
     try {
         const { email, password, rememberMe } = req.body;
         
@@ -266,7 +266,7 @@ router.post('/check-email', async (req, res) => {
  * @desc    Send password reset email
  * @access  Public
  */
-router.post('/forgot-password', rateLimiter(3, 60), async (req, res) => {
+router.post('/forgot-password', ratelimiter(3, 60), async (req, res) => {
     try {
         const { email } = req.body;
         

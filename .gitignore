@@ -159,7 +159,6 @@ $RECYCLE.BIN/
 # -------------------------------
 # Misc / Future Proofing
 # -------------------------------
-models/
 datasets/
 sessions/
 email-templates/build/
