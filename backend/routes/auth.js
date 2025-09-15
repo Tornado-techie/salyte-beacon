@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 // Import User model
-const User = require('./models/user');
+const User = require('../models/user');
 
 // Import middleware
 const { auth } = require('../middleware/auth');
