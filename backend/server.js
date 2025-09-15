@@ -10,7 +10,7 @@ const path = require('path');
 require('dotenv').config();
 
 // Import database connection
-const connectDB = require('./config/db');
+const { connectDB } = require('./config/db');
 
 // Import route handlers
 const authRoutes = require('./routes/auth');
