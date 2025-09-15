@@ -1,0 +1,172 @@
+# -------------------------------
+# Environment Variables
+# -------------------------------
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+
+# -------------------------------
+# Node.js
+# -------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# -------------------------------
+# Runtime & Logs
+# -------------------------------
+logs/
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# -------------------------------
+# Test Coverage
+# -------------------------------
+coverage/
+*.lcov
+.nyc_output
+
+# -------------------------------
+# Build & Cache
+# -------------------------------
+dist/
+build/
+out/
+tmp/
+temp/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+public/
+.storybook-out/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.eslintcache
+.stylelintcache
+.prettiercache
+.jest/
+*.tsbuildinfo
+
+# -------------------------------
+# Databases & Dumps
+# -------------------------------
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.db
+*.db-journal
+*.bson
+mongo-dumps/
+dump.rdb
+
+# -------------------------------
+# Secrets & Config
+# -------------------------------
+config/keys.js
+config/secrets.json
+config/production.json
+config/staging.json
+.github/secrets/
+.gitlab/secrets/
+secrets/
+private/
+certs/
+ssl/
+*.pem
+*.crt
+*.key
+*.p12
+*.pfx
+
+# -------------------------------
+# User Uploads
+# -------------------------------
+uploads/
+public/uploads/
+frontend/assets/uploads/
+
+# -------------------------------
+# Docs & Reports
+# -------------------------------
+docs/build/
+*.pdf
+test-results/
+coverage/
+*.test.db
+api-docs/
+swagger-ui/
+security-scan-results/
+load-test-results/
+perf-results/
+a11y-results/
+
+# -------------------------------
+# IDE & Editor
+# -------------------------------
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*~
+.history/
+.localhistory/
+.netrwhist
+*.orig
+
+# -------------------------------
+# OS Generated Files
+# -------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+[Tt]humbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# -------------------------------
+# Optional Lock Files
+# -------------------------------
+# package-lock.json  # if using Yarn
+# yarn.lock          # if using npm
+
+# -------------------------------
+# Misc / Future Proofing
+# -------------------------------
+models/
+datasets/
+sessions/
+email-templates/build/
+monitoring/
+deploy/
+backup-scripts/
+maintenance.html
+maintenance-mode.json
+feature-flags.json
+launch-darkly.json

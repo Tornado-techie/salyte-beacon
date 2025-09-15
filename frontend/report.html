@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Reporting - Salyte Beacon</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="report.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-water me-2"></i>Salyte Beacon
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ai.html">AI Assistant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cartomap.html">Cartomap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="knowledge.html">Knowledge Hub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="report.html">Report Issue</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2 px-3" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold text-white mb-3">Community Water Reporting</h1>
+                    <p class="lead text-white-50 mb-4">
+                        Help improve water safety in your community by reporting water quality issues, 
+                        contamination incidents, and infrastructure problems. Your reports help authorities 
+                        respond quickly and protect public health.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-light btn-lg me-3" onclick="scrollToReportForm()">
+                            <i class="fas fa-plus me-2"></i>Submit Report
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="scrollToRecentReports()">
+                            <i class="fas fa-list me-2"></i>View Reports
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <strong id="totalReports">1,247</strong>
+                                <span>Total Reports</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong id="resolvedReports">892</strong>
+                                <span>Resolved</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong id="avgResponseTime">24h</strong>
+                                <span>Avg Response</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Form Section -->
+    <section class="report-form-section py-5" id="reportFormSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="report-form-card">
+                        <div class="form-header">
+                            <h2><i class="fas fa-clipboard-list me-3"></i>Submit Water Quality Report</h2>
+                            <p class="text-muted">Provide detailed information to help authorities respond effectively</p>
+                        </div>
+
+                        <form id="reportForm" class="report-form">
+                            <!-- Report Type -->
+                            <div class="form-section">
+                                <h4>Report Type</h4>
+                                <div class="report-type-grid">
+                                    <div class="report-type-card" data-type="contamination">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <h5>Water Contamination</h5>
+                                        <p>Polluted or unsafe water source</p>
+                                        <input type="radio" name="reportType" value="contamination" id="type-contamination">
+                                    </div>
+                                    <div class="report-type-card" data-type="shortage">
+                                        <i class="fas fa-tint-slash"></i>
+                                        <h5>Water Shortage</h5>
+                                        <p>Limited or no water availability</p>
+                                        <input type="radio" name="reportType" value="shortage" id="type-shortage">
+                                    </div>
+                                    <div class="report-type-card" data-type="quality">
+                                        <i class="fas fa-flask"></i>
+                                        <h5>Quality Issues</h5>
+                                        <p>Poor taste, odor, or appearance</p>
+                                        <input type="radio" name="reportType" value="quality" id="type-quality">
+                                    </div>
+                                    <div class="report-type-card" data-type="infrastructure">
+                                        <i class="fas fa-wrench"></i>
+                                        <h5>Infrastructure</h5>
+                                        <p>Broken pipes, pumps, or facilities</p>
+                                        <input type="radio" name="reportType" value="infrastructure" id="type-infrastructure">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Location Information -->
+                            <div class="form-section">
+                                <h4>Location Information</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="locationName" placeholder="Location Name" required>
+                                            <label for="locationName">Location Name / Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" id="county" required>
+                                                <option value="">Select County</option>
+                                                <option value="nairobi">Nairobi</option>
+                                                <option value="mombasa">Mombasa</option>
+                                                <option value="kiambu">Kiambu</option>
+                                                <option value="nakuru">Nakuru</option>
+                                                <option value="kisumu">Kisumu</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                            <label for="county">County</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Map for Location Selection -->
+                                <div class="location-map-container mb-3">
+                                    <label class="form-label">Click on the map to pinpoint location (optional)</label>
+                                    <div id="locationMap" class="location-map"></div>
+                                    <div class="coordinates-display">
+                                        <small class="text-muted">
+                                            Coordinates: <span id="selectedCoords">Click on map to select</span>
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" id="latitude" step="any" readonly>
+                                            <label for="latitude">Latitude</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" id="longitude" step="any" readonly>
+                                            <label for="longitude">Longitude</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Issue Details -->
+                            <div class="form-section">
+                                <h4>Issue Details</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" id="severity" required>
+                                                <option value="">Select Severity</option>
+                                                <option value="low">Low - Minor inconvenience</option>
+                                                <option value="medium">Medium - Significant concern</option>
+                                                <option value="high">High - Urgent attention needed</option>
+                                                <option value="critical">Critical - Health emergency</option>
+                                            </select>
+                                            <label for="severity">Severity Level</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" id="affected">
+                                                <option value="">Estimated People Affected</option>
+                                                <option value="1-10">1-10 people</option>
+                                                <option value="11-50">11-50 people</option>
+                                                <option value="51-100">51-100 people</option>
+                                                <option value="101-500">101-500 people</option>
+                                                <option value="500+">500+ people</option>
+                                            </select>
+                                            <label for="affected">People Affected</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="description" placeholder="Description" style="height: 120px" required></textarea>
+                                    <label for="description">Detailed Description of the Issue</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="datetime-local" class="form-control" id="incidentDate">
+                                    <label for="incidentDate">When did you first notice this issue?</label>
+                                </div>
+                            </div>
+
+                            <!-- Photo Upload -->
+                            <div class="form-section">
+                                <h4>Photo Evidence (Optional)</h4>
+                                <div class="photo-upload-area" id="photoUploadArea">
+                                    <i class="fas fa-camera fa-3x mb-3"></i>
+                                    <p>Click to upload photos or drag and drop</p>
+                                    <p class="small text-muted">Accepted formats: JPG, PNG, HEIC. Max 5 photos, 10MB each.</p>
+                                    <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
+                                </div>
+                                <div id="photoPreview" class="photo-preview-container" style="display: none;"></div>
+                            </div>
+
+                            <!-- Contact Information -->
+                            <div class="form-section">
+                                <h4>Contact Information</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="reporterName">
+                                            <label for="reporterName">Your Name (Optional)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="tel" class="form-control" id="reporterPhone">
+                                            <label for="reporterPhone">Phone Number (Optional)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="reporterEmail">
+                                    <label for="reporterEmail">Email Address (Optional)</label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="anonymousSubmission">
+                                    <label class="form-check-label" for="anonymousSubmission">
+                                        Submit anonymously (contact info will not be shared publicly)
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="followUpConsent">
+                                    <label class="form-check-label" for="followUpConsent">
+                                        I consent to be contacted for follow-up information if needed
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="form-section">
+                                <h4>Additional Information</h4>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="additionalInfo" placeholder="Additional Information" style="height: 80px"></textarea>
+                                    <label for="additionalInfo">Any other relevant information</label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="reportedElsewhere">
+                                    <label class="form-check-label" for="reportedElsewhere">
+                                        I have already reported this issue to local authorities
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Buttons -->
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline-secondary me-3" onclick="clearForm()">
+                                    <i class="fas fa-undo me-2"></i>Clear Form
+                                </button>
+                                <button type="submit" class="btn btn-danger btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Report
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Reports Section -->
+    <section class="recent-reports-section py-5 bg-light" id="recentReportsSection">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2>Recent Community Reports</h2>
+                <p class="text-muted">Latest water quality issues reported by community members</p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="reports-filters mb-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select class="form-select" id="typeFilter">
+                            <option value="">All Report Types</option>
+                            <option value="contamination">Contamination</option>
+                            <option value="shortage">Water Shortage</option>
+                            <option value="quality">Quality Issues</option>
+                            <option value="infrastructure">Infrastructure</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="new">New</option>
+                            <option value="investigating">Under Investigation</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="severityFilter">
+                            <option value="">All Severities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="nairobi">Nairobi</option>
+                            <option value="mombasa">Mombasa</option>
+                            <option value="kisumu">Kisumu</option>
+                            <option value="nakuru">Nakuru</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Grid -->
+            <div class="reports-grid" id="reportsGrid">
+                <!-- Reports will be dynamically loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary" id="loadMoreBtn" onclick="loadMoreReports()">
+                    <i class="fas fa-chevron-down me-2"></i>Load More Reports
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Impact Statistics</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon contamination">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h4 id="contaminationReports">156</h4>
+                                    <p>Contamination Reports</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon shortage">
+                                    <i class="fas fa-tint-slash"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h4 id="shortageReports">89</h4>
+                                    <p>Shortage Reports</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon infrastructure">
+                                    <i class="fas fa-wrench"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h4 id="infrastructureReports">67</h4>
+                                    <p>Infrastructure Issues</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon quality">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h4 id="qualityReports">45</h4>
+                                    <p>Quality Concerns</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="response-time-card">
+                        <h5>Average Response Times</h5>
+                        <div class="response-item">
+                            <span>Critical Issues</span>
+                            <span class="response-time critical">2-4 hours</span>
+                        </div>
+                        <div class="response-item">
+                            <span>High Priority</span>
+                            <span class="response-time high">8-12 hours</span>
+                        </div>
+                        <div class="response-item">
+                            <span>Medium Priority</span>
+                            <span class="response-time medium">1-2 days</span>
+                        </div>
+                        <div class="response-item">
+                            <span>Low Priority</span>
+                            <span class="response-time low">3-5 days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Details Modal -->
+    <div class="modal fade" id="reportDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Report Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="reportDetailsContent">
+                    <!-- Report details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" onclick="shareReport()">
+                        <i class="fas fa-share me-2"></i>Share Report
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="followReport()">
+                        <i class="fas fa-bell me-2"></i>Follow Updates
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-check-circle me-2"></i>Report Submitted Successfully
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fas fa-check-circle text-success fa-4x mb-3"></i>
+                        <h4>Thank you for your report!</h4>
+                        <p>Your report has been submitted and assigned tracking ID: <strong id="reportTrackingId">WR-2025-001247</strong></p>
+                        <p class="text-muted">Local authorities have been notified and will investigate this issue. You will receive updates via email if you provided contact information.</p>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>What happens next?</strong>
+                            <ul class="list-unstyled mt-2 mb-0">
+                                <li>• Report is reviewed within 24 hours</li>
+                                <li>• Investigation team is assigned</li>
+                                <li>• You receive status updates</li>
+                                <li>• Issue is resolved and verified</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" onclick="trackReport()">
+                        <i class="fas fa-search me-2"></i>Track Report
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="submitAnotherReport()">
+                        <i class="fas fa-plus me-2"></i>Submit Another Report
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Contact Modal -->
+    <div class="modal fade" id="emergencyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Emergency Water Issue
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <h6><i class="fas fa-phone me-2"></i>For immediate health emergencies:</h6>
+                        <p class="mb-2"><strong>Emergency Services:</strong> <a href="tel:911" class="text-decoration-none">911</a></p>
+                        <p class="mb-2"><strong>Kenya Ministry of Health:</strong> <a href="tel:+254719001555" class="text-decoration-none">+254 719 001 555</a></p>
+                        <p class="mb-0"><strong>County Health Office:</strong> Contact your local county health department</p>
+                    </div>
+                    
+                    <h6>Water Emergency Contacts:</h6>
+                    <ul class="list-unstyled">
+                        <li><strong>Nairobi Water:</strong> <a href="tel:+254202574000" class="text-decoration-none">+254 20 2574000</a></li>
+                        <li><strong>Kenya Water Towers:</strong> <a href="tel:+254202719183" class="text-decoration-none">+254 20 2719183</a></li>
+                        <li><strong>Water Quality Hotline:</strong> <a href="tel:+254700123456" class="text-decoration-none">+254 700 123 456</a></li>
+                    </ul>
+                    
+                    <div class="alert alert-warning">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>In case of water contamination emergency:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li>Stop using the water immediately</li>
+                            <li>Switch to bottled water</li>
+                            <li>Contact emergency services</li>
+                            <li>Submit a report through this platform</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="callEmergency()">
+                        <i class="fas fa-phone me-2"></i>Call Emergency Services
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Alert Button -->
+    <div class="emergency-button">
+        <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#emergencyModal" title="Water Emergency">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span class="d-none d-md-inline">Emergency</span>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-water me-2"></i>Salyte Beacon Reporting</h5>
+                    <p class="small">Empowering communities to report and resolve water safety issues</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6>Emergency Contacts</h6>
+                    <ul class="list-unstyled small">
+                        <li><i class="fas fa-phone me-2"></i>Emergency: 911</li>
+                        <li><i class="fas fa-phone me-2"></i>Health Ministry: +254 719 001 555</li>
+                        <li><i class="fas fa-envelope me-2"></i>reports@salytebeacon.org</li>
+                        <li><i class="fas fa-whatsapp me-2"></i>WhatsApp: +254 700 123 456</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Report Guidelines</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">How to Report</a></li>
+                        <li><a href="#" class="text-white-50">What to Include</a></li>
+                        <li><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white-50">Community Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="small mb-0">
+                        &copy; 2025 Salyte Beacon Community Reporting. All rights reserved. | 
+                        <a href="#" class="text-white-50">Privacy</a> | 
+                        <a href="#" class="text-white-50">Terms</a> | 
+                        <a href="#" class="text-white-50">Data Protection</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Custom JS -->
+    <script src="report.js"></script>
+</body>
+</html>

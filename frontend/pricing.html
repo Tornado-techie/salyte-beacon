@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - Salyte Beacon</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="pricing.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-water me-2"></i>Salyte Beacon
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ai.html">AI Assistant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cartomap.html">Cartomap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="knowledge.html">Knowledge Hub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="report.html">Report Issue</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2 px-3" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold text-white mb-4">Simple, Transparent Pricing</h1>
+                    <p class="lead text-white-50 mb-4">
+                        Choose the perfect plan for your water safety monitoring needs. 
+                        All plans include access to our AI assistant and community features.
+                    </p>
+                    <div class="pricing-toggle">
+                        <span class="text-white me-3">Monthly</span>
+                        <div class="form-check form-switch d-inline-block">
+                            <input class="form-check-input" type="checkbox" id="annualToggle">
+                            <label class="form-check-label text-white" for="annualToggle">
+                                Annual <span class="badge bg-success ms-2">Save 20%</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Free Plan -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="pricing-card">
+                        <div class="plan-header">
+                            <h3>Free</h3>
+                            <div class="price">
+                                <span class="amount">$0</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p>Perfect for individuals getting started with water monitoring</p>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Basic water quality info</li>
+                                <li><i class="fas fa-check text-success me-2"></i>10 AI assistant queries/day</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Community reporting</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Basic map access</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>Offline articles</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>Advanced analytics</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>API access</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>Priority support</li>
+                            </ul>
+                        </div>
+                        <div class="plan-action">
+                            <button class="btn btn-outline-primary w-100" onclick="selectPlan('free')">
+                                Get Started Free
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Plan -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="pricing-card">
+                        <div class="plan-header">
+                            <h3>Basic</h3>
+                            <div class="price">
+                                <span class="amount monthly-price">$19</span>
+                                <span class="amount annual-price" style="display: none;">$15</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p>Ideal for professionals and small organizations</p>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Everything in Free</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Unlimited AI queries</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Offline article access</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Advanced map layers</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Data export (CSV)</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Email support</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>API access</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>White-label options</li>
+                            </ul>
+                        </div>
+                        <div class="plan-action">
+                            <button class="btn btn-primary w-100" onclick="selectPlan('basic')">
+                                Start Basic Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Plan (Most Popular) -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3>Premium</h3>
+                            <div class="price">
+                                <span class="amount monthly-price">$49</span>
+                                <span class="amount annual-price" style="display: none;">$39</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p>Perfect for organizations and water professionals</p>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Everything in Basic</li>
+                                <li><i class="fas fa-check text-success me-2"></i>API access (10K calls/month)</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Advanced analytics</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Custom reports</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Bulk data uploads</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Priority support</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Training webinars</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>White-label solutions</li>
+                            </ul>
+                        </div>
+                        <div class="plan-action">
+                            <button class="btn btn-primary w-100" onclick="selectPlan('premium')">
+                                Start Premium Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="pricing-card">
+                        <div class="plan-header">
+                            <h3>Enterprise</h3>
+                            <div class="price">
+                                <span class="amount">Custom</span>
+                            </div>
+                            <p>Tailored solutions for large organizations</p>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Everything in Premium</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Unlimited API access</li>
+                                <li><i class="fas fa-check text-success me-2"></i>White-label solutions</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Custom integrations</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Dedicated support</li>
+                                <li><i class="fas fa-check text-success me-2"></i>On-site training</li>
+                                <li><i class="fas fa-check text-success me-2"></i>SLA guarantees</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Multi-tenant setup</li>
+                            </ul>
+                        </div>
+                        <div class="plan-action">
+                            <button class="btn btn-outline-primary w-100" onclick="contactSales()">
+                                Contact Sales
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Comparison -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Compare All Features</h2>
+                <p class="text-muted">Detailed breakdown of what's included in each plan</p>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-borderless features-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Features</th>
+                            <th scope="col" class="text-center">Free</th>
+                            <th scope="col" class="text-center">Basic</th>
+                            <th scope="col" class="text-center">Premium</th>
+                            <th scope="col" class="text-center">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>AI Assistant Queries</strong></td>
+                            <td class="text-center">10/day</td>
+                            <td class="text-center">Unlimited</td>
+                            <td class="text-center">Unlimited</td>
+                            <td class="text-center">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Map Access</strong></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Offline Articles</strong></td>
+                            <td class="text-center"><i class="fas fa-times text-muted"></i></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td><strong>API Calls/Month</strong></td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">1,000</td>
+                            <td class="text-center">10,000</td>
+                            <td class="text-center">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Export</strong></td>
+                            <td class="text-center"><i class="fas fa-times text-muted"></i></td>
+                            <td class="text-center">CSV</td>
+                            <td class="text-center">CSV, Excel, API</td>
+                            <td class="text-center">All formats</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Support Level</strong></td>
+                            <td class="text-center">Community</td>
+                            <td class="text-center">Email</td>
+                            <td class="text-center">Priority</td>
+                            <td class="text-center">Dedicated</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-center fw-bold mb-5">Frequently Asked Questions</h2>
+                    
+                    <div class="accordion" id="pricingFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Can I switch plans anytime?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any billing differences.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Is there a free trial for paid plans?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    All paid plans come with a 14-day free trial. No credit card required to start your trial.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    What payment methods do you accept?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    We accept all major credit cards, PayPal, and mobile money (M-Pesa, Airtel Money) for African customers.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="fw-bold mb-4">Ready to improve water safety in your community?</h2>
+                    <p class="lead mb-4">Join thousands of water professionals using Salyte Beacon worldwide</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary btn-lg me-3" onclick="selectPlan('basic')">
+                            Start Free Trial
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg" onclick="contactSales()">
+                            Contact Sales
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-water me-2"></i>Salyte Beacon</h5>
+                    <p class="small">AI-powered water safety for sustainable communities</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Pricing</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">Free Plan</a></li>
+                        <li><a href="#" class="text-white-50">Basic Plan</a></li>
+                        <li><a href="#" class="text-white-50">Premium Plan</a></li>
+                        <li><a href="#" class="text-white-50">Enterprise</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled small">
+                        <li><i class="fas fa-envelope me-2"></i>billing@salytebeacon.org</li>
+                        <li><i class="fas fa-phone me-2"></i>+254 700 123 456</li>
+                        <li><i class="fas fa-comments me-2"></i>Live Chat Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="pricing.js"></script>
+</body>
+</html>

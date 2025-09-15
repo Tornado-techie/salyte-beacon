@@ -1,0 +1,452 @@
+/* Login Page Styles for Salyte Beacon */
+
+/* Root Variables */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --border-radius: 15px;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Styles */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--info-color) !important;
+}
+
+/* Login Section */
+.login-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+/* Login Card */
+.login-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+}
+
+/* Login Header */
+.login-header {
+    margin-bottom: 2rem;
+}
+
+.login-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.login-header h2 {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: var(--secondary-color);
+    margin-bottom: 0;
+}
+
+/* Form Styles */
+.login-form {
+    margin-bottom: 2rem;
+}
+
+.form-floating {
+    position: relative;
+}
+
+.form-floating > .form-control {
+    height: 60px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-floating > .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-floating > label {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--primary-color);
+}
+
+/* Password Toggle */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--secondary-color);
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: var(--primary-color);
+}
+
+/* Form Check Styles */
+.form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--info-color);
+    text-decoration: underline !important;
+}
+
+/* Button Styles */
+.login-btn {
+    height: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
+}
+
+.login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* OAuth Styles */
+.oauth-section {
+    margin-bottom: 2rem;
+}
+
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #dee2e6;
+}
+
+.divider span {
+    background: white;
+    color: var(--secondary-color);
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+}
+
+.oauth-btn {
+    height: 50px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.oauth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-danger.oauth-btn {
+    border-color: #db4437;
+    color: #db4437;
+}
+
+.btn-outline-danger.oauth-btn:hover {
+    background-color: #db4437;
+    border-color: #db4437;
+    color: white;
+}
+
+.btn-outline-primary.oauth-btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Form Validation Styles */
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+    animation: shake 0.5s ease;
+}
+
+.form-control.is-valid {
+    border-color: var(--success-color);
+}
+
+.invalid-feedback {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--danger-color);
+    margin-top: 0.5rem;
+}
+
+/* Loading States */
+.btn-loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+    margin-top: auto;
+}
+
+footer h5, footer h6 {
+    color: var(--info-color);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(13, 110, 253, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-section {
+        padding: 2rem 0;
+    }
+    
+    .login-card {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .login-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .login-header h2 {
+        font-size: 1.75rem;
+    }
+    
+    .form-floating > .form-control {
+        height: 55px;
+    }
+    
+    .login-btn, .oauth-btn {
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 1.5rem;
+    }
+    
+    .form-check {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .forgot-password {
+        align-self: flex-end;
+    }
+}
+
+/* Accessibility Improvements */
+.form-control:focus {
+    outline: none;
+}
+
+.btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Dark Mode Support (if needed) */
+@media (prefers-color-scheme: dark) {
+    .login-card {
+        background: #2d3748;
+        color: white;
+    }
+    
+    .form-floating > .form-control {
+        background-color: #4a5568;
+        border-color: #4a5568;
+        color: white;
+    }
+    
+    .form-floating > label {
+        color: #a0aec0;
+    }
+    
+    .divider::before {
+        background: #4a5568;
+    }
+    
+    .divider span {
+        background: #2d3748;
+        color: #a0aec0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar, footer, .oauth-section {
+        display: none;
+    }
+    
+    body {
+        background: white;
+    }
+    
+    .login-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}

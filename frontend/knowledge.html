@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub - Salyte Beacon</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="knowledge.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-water me-2"></i>Salyte Beacon
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ai.html">AI Assistant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cartomap.html">Cartomap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="knowledge.html">Knowledge Hub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="report.html">Report Issue</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-light ms-2 px-3" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold text-white mb-3">Water Safety Knowledge Hub</h1>
+                    <p class="lead text-white-50 mb-4">
+                        Comprehensive resources, guides, and expert knowledge for water quality management, 
+                        testing procedures, and community water safety initiatives.
+                    </p>
+                    <div class="search-bar-hero">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" id="heroSearchInput" class="form-control form-control-lg" placeholder="Search knowledge base...">
+                            <button class="btn btn-light btn-lg" onclick="searchKnowledgeBase()">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <h3>250+</h3>
+                                <p>Articles & Guides</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3>15K+</h3>
+                                <p>Community Members</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-download"></i>
+                            <div>
+                                <h3>500K+</h3>
+                                <p>Downloads</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4">
+                    <div class="knowledge-sidebar">
+                        <h5>Browse Categories</h5>
+                        
+                        <div class="category-list">
+                            <a href="#water-testing" class="category-item active" data-category="water-testing">
+                                <i class="fas fa-flask"></i>
+                                <span>Water Testing</span>
+                                <small>(45 articles)</small>
+                            </a>
+                            <a href="#water-treatment" class="category-item" data-category="water-treatment">
+                                <i class="fas fa-filter"></i>
+                                <span>Water Treatment</span>
+                                <small>(38 articles)</small>
+                            </a>
+                            <a href="#quality-standards" class="category-item" data-category="quality-standards">
+                                <i class="fas fa-certificate"></i>
+                                <span>Quality Standards</span>
+                                <small>(22 articles)</small>
+                            </a>
+                            <a href="#community-guides" class="category-item" data-category="community-guides">
+                                <i class="fas fa-users"></i>
+                                <span>Community Guides</span>
+                                <small>(35 articles)</small>
+                            </a>
+                            <a href="#emergency-response" class="category-item" data-category="emergency-response">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Emergency Response</span>
+                                <small>(18 articles)</small>
+                            </a>
+                            <a href="#equipment-guides" class="category-item" data-category="equipment-guides">
+                                <i class="fas fa-tools"></i>
+                                <span>Equipment Guides</span>
+                                <small>(29 articles)</small>
+                            </a>
+                            <a href="#policy-regulations" class="category-item" data-category="policy-regulations">
+                                <i class="fas fa-gavel"></i>
+                                <span>Policy & Regulations</span>
+                                <small>(15 articles)</small>
+                            </a>
+                            <a href="#case-studies" class="category-item" data-category="case-studies">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Case Studies</span>
+                                <small>(25 articles)</small>
+                            </a>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="quick-links mt-4">
+                            <h6>Quick Links</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none"><i class="fas fa-download me-2"></i>Download Center</a></li>
+                                <li><a href="#" class="text-decoration-none"><i class="fas fa-video me-2"></i>Video Tutorials</a></li>
+                                <li><a href="#" class="text-decoration-none"><i class="fas fa-calendar me-2"></i>Webinars</a></li>
+                                <li><a href="#" class="text-decoration-none"><i class="fas fa-comments me-2"></i>Discussion Forum</a></li>
+                                <li><a href="#" class="text-decoration-none"><i class="fas fa-question-circle me-2"></i>Ask an Expert</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Offline Mode Toggle -->
+                        <div class="offline-mode mt-4">
+                            <h6>Offline Access</h6>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="offlineMode">
+                                <label class="form-check-label" for="offlineMode">
+                                    Enable offline reading
+                                </label>
+                            </div>
+                            <p class="small text-muted mt-2">Save articles for offline access when internet is unavailable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="col-lg-9">
+                    <!-- Search and Filters -->
+                    <div class="search-filters mb-4">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Search articles, guides, and resources...">
+                                    <button class="btn btn-outline-primary" onclick="searchArticles()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="sortFilter" class="form-select">
+                                    <option value="relevance">Most Relevant</option>
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="popular">Most Popular</option>
+                                    <option value="updated">Recently Updated</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Articles -->
+                    <section class="featured-articles mb-5">
+                        <div class="section-header">
+                            <h3>Featured Articles</h3>
+                            <p class="text-muted">Essential guides for water safety professionals and communities</p>
+                        </div>
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="featured-card">
+                                    <div class="featured-image">
+                                        <i class="fas fa-microscope"></i>
+                                    </div>
+                                    <div class="featured-content">
+                                        <span class="featured-badge">Expert Guide</span>
+                                        <h4>Complete Guide to Water Quality Testing</h4>
+                                        <p>Comprehensive methodology for testing pH, TDS, turbidity, and bacterial contamination in field conditions.</p>
+                                        <div class="featured-meta">
+                                            <span><i class="fas fa-clock"></i> 15 min read</span>
+                                            <span><i class="fas fa-download"></i> 2.5K downloads</span>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-sm">Read Article</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="featured-card">
+                                    <div class="featured-image">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="featured-content">
+                                        <span class="featured-badge">Community</span>
+                                        <h4>Household Water Treatment Methods</h4>
+                                        <p>Practical solutions for improving water quality at home using affordable, locally available materials.</p>
+                                        <div class="featured-meta">
+                                            <span><i class="fas fa-clock"></i> 8 min read</span>
+                                            <span><i class="fas fa-download"></i> 4.1K downloads</span>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-sm">Read Article</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Article Categories -->
+                    <section class="article-categories mb-5">
+                        <div class="section-header">
+                            <h3>Browse by Category</h3>
+                        </div>
+                        
+                        <div class="category-grid">
+                            <div class="category-card" onclick="filterByCategory('water-testing')">
+                                <i class="fas fa-flask"></i>
+                                <h5>Water Testing</h5>
+                                <p>Testing methods, equipment guides, and field procedures</p>
+                                <span class="article-count">45 articles</span>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('water-treatment')">
+                                <i class="fas fa-filter"></i>
+                                <h5>Water Treatment</h5>
+                                <p>Purification methods and treatment technologies</p>
+                                <span class="article-count">38 articles</span>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('community-guides')">
+                                <i class="fas fa-users"></i>
+                                <h5>Community Guides</h5>
+                                <p>Resources for community water management</p>
+                                <span class="article-count">35 articles</span>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('equipment-guides')">
+                                <i class="fas fa-tools"></i>
+                                <h5>Equipment Guides</h5>
+                                <p>Sensor setup, maintenance, and troubleshooting</p>
+                                <span class="article-count">29 articles</span>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('case-studies')">
+                                <i class="fas fa-chart-line"></i>
+                                <h5>Case Studies</h5>
+                                <p>Real-world water safety success stories</p>
+                                <span class="article-count">25 articles</span>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('emergency-response')">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h5>Emergency Response</h5>
+                                <p>Crisis management and rapid response protocols</p>
+                                <span class="article-count">18 articles</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Recent Articles -->
+                    <section class="recent-articles mb-5">
+                        <div class="section-header">
+                            <h3>Latest Articles</h3>
+                            <a href="#" class="btn btn-outline-primary btn-sm">View All</a>
+                        </div>
+                        
+                        <div class="articles-list" id="articlesList">
+                            <!-- Articles will be dynamically loaded here -->
+                        </div>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="faq-section mb-5">
+                        <div class="section-header">
+                            <h3>Frequently Asked Questions</h3>
+                            <p class="text-muted">Quick answers to common water safety questions</p>
+                        </div>
+                        
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        What is the ideal pH range for drinking water?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The World Health Organization (WHO) recommends a pH range of 6.5 to 8.5 for drinking water. 
+                                        Water outside this range may corrode pipes, affect taste, or indicate contamination. 
+                                        Regular pH testing helps ensure water safety and system integrity.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        How often should I test my water quality?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        For private wells, test annually for bacteria, nitrates, and total dissolved solids. 
+                                        Test every 3 years for other contaminants. Municipal water should be tested if you notice 
+                                        changes in taste, odor, or appearance. High-risk areas may require more frequent testing.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        What are the most common water contaminants?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Common contaminants include bacteria (E. coli, coliform), chemicals (chlorine, fluoride), 
+                                        heavy metals (lead, mercury), nitrates from fertilizers, and physical particles causing turbidity. 
+                                        Each requires specific testing and treatment methods.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Which water treatment method is most effective?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The most effective method depends on specific contaminants. Reverse osmosis removes most 
+                                        dissolved solids, UV sterilization kills bacteria/viruses, activated carbon removes chlorine 
+                                        and organics. Multi-stage systems combining methods often provide the best protection.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        How can communities improve water access?
+                                    </button>
+                                </h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Communities can form water committees, apply for grants, implement rainwater harvesting, 
+                                        maintain existing infrastructure, and educate residents about water conservation and quality. 
+                                        Partnerships with NGOs and government programs can provide technical and financial support.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                        What should I do if my water test shows contamination?
+                                    </button>
+                                </h2>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        First, stop using the water for drinking and cooking. Switch to bottled water immediately. 
+                                        Contact local health authorities and a certified water treatment professional. 
+                                        Retest after treatment to confirm contamination is resolved before resuming use.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Downloads Section -->
+                    <section class="downloads-section">
+                        <div class="section-header">
+                            <h3>Download Center</h3>
+                            <p class="text-muted">Essential resources for water quality professionals</p>
+                        </div>
+                        
+                        <div class="downloads-grid">
+                            <div class="download-card">
+                                <div class="download-icon">
+                                    <i class="fas fa-file-pdf text-danger"></i>
+                                </div>
+                                <div class="download-content">
+                                    <h5>WHO Water Quality Guidelines</h5>
+                                    <p>Complete WHO guidelines for drinking-water quality (4th edition)</p>
+                                    <div class="download-meta">
+                                        <span><i class="fas fa-file"></i> PDF, 2.3 MB</span>
+                                        <span><i class="fas fa-download"></i> 15.2K downloads</span>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="downloadFile('who-guidelines.pdf')">
+                                        <i class="fas fa-download me-2"></i>Download
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="download-card">
+                                <div class="download-icon">
+                                    <i class="fas fa-file-excel text-success"></i>
+                                </div>
+                                <div class="download-content">
+                                    <h5>Water Testing Checklist</h5>
+                                    <p>Comprehensive checklist for field water quality testing procedures</p>
+                                    <div class="download-meta">
+                                        <span><i class="fas fa-file"></i> Excel, 156 KB</span>
+                                        <span><i class="fas fa-download"></i> 8.7K downloads</span>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="downloadFile('testing-checklist.xlsx')">
+                                        <i class="fas fa-download me-2"></i>Download
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="download-card">
+                                <div class="download-icon">
+                                    <i class="fas fa-file-powerpoint text-warning"></i>
+                                </div>
+                                <div class="download-content">
+                                    <h5>Community Training Slides</h5>
+                                    <p>Educational presentation for community water safety training programs</p>
+                                    <div class="download-meta">
+                                        <span><i class="fas fa-file"></i> PowerPoint, 4.1 MB</span>
+                                        <span><i class="fas fa-download"></i> 3.2K downloads</span>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="downloadFile('community-training.pptx')">
+                                        <i class="fas fa-download me-2"></i>Download
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="download-card">
+                                <div class="download-icon">
+                                    <i class="fas fa-file-alt text-info"></i>
+                                </div>
+                                <div class="download-content">
+                                    <h5>Emergency Response Protocol</h5>
+                                    <p>Step-by-step guide for responding to water contamination emergencies</p>
+                                    <div class="download-meta">
+                                        <span><i class="fas fa-file"></i> Word, 892 KB</span>
+                                        <span><i class="fas fa-download"></i> 5.5K downloads</span>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="downloadFile('emergency-protocol.docx')">
+                                        <i class="fas fa-download me-2"></i>Download
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Article Modal -->
+    <div class="modal fade" id="articleModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="articleTitle">Article Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="articleContent">
+                    <!-- Article content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" onclick="toggleOfflineArticle()">
+                        <i class="fas fa-download me-2"></i>Save Offline
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="shareArticle()">
+                        <i class="fas fa-share me-2"></i>Share
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup Modal -->
+    <div class="modal fade" id="newsletterModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Subscribe to Updates</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Get the latest water safety articles, guides, and research delivered to your inbox.</p>
+                    <form id="newsletterForm">
+                        <div class="mb-3">
+                            <label for="newsletterEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="newsletterEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="interests" class="form-label">Areas of Interest</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="water-testing" id="interest1">
+                                <label class="form-check-label" for="interest1">Water Testing</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="water-treatment" id="interest2">
+                                <label class="form-check-label" for="interest2">Water Treatment</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="community-programs" id="interest3">
+                                <label class="form-check-label" for="interest3">Community Programs</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" id="newsletterFrequency">
+                                <option value="weekly">Weekly Updates</option>
+                                <option value="monthly" selected>Monthly Newsletter</option>
+                                <option value="quarterly">Quarterly Summary</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="subscribeNewsletter()">
+                        <i class="fas fa-envelope me-2"></i>Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <button class="fab-btn" id="searchFab" onclick="focusSearch()" title="Search Knowledge Base">
+            <i class="fas fa-search"></i>
+        </button>
+        <button class="fab-btn" id="bookmarkFab" onclick="showBookmarks()" title="My Bookmarks">
+            <i class="fas fa-bookmark"></i>
+        </button>
+        <button class="fab-btn" id="newsletterFab" data-bs-toggle="modal" data-bs-target="#newsletterModal" title="Subscribe to Updates">
+            <i class="fas fa-envelope"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-water me-2"></i>Salyte Beacon Knowledge Hub</h5>
+                    <p class="small">Empowering communities with water safety knowledge and resources.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">Articles</a></li>
+                        <li><a href="#" class="text-white-50">Guides</a></li>
+                        <li><a href="#" class="text-white-50">Downloads</a></li>
+                        <li><a href="#" class="text-white-50">Videos</a></li>
+                        <li><a href="#" class="text-white-50">Webinars</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6>Community</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">Discussion Forum</a></li>
+                        <li><a href="#" class="text-white-50">Expert Q&A</a></li>
+                        <li><a href="#" class="text-white-50">Case Studies</a></li>
+                        <li><a href="#" class="text-white-50">Success Stories</a></li>
+                        <li><a href="#" class="text-white-50">User Groups</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">Help Center</a></li>
+                        <li><a href="#" class="text-white-50">Contact Us</a></li>
+                        <li><a href="#" class="text-white-50">Feedback</a></li>
+                        <li><a href="#" class="text-white-50">Report Issue</a></li>
+                        <li><a href="#" class="text-white-50">Contribute</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white-50">Terms of Use</a></li>
+                        <li><a href="#" class="text-white-50">Copyright</a></li>
+                        <li><a href="#" class="text-white-50">Disclaimer</a></li>
+                        <li><a href="#" class="text-white-50">Attribution</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="small mb-0">
+                        &copy; 2025 Salyte Beacon Knowledge Hub. All rights reserved. 
+                        Content licensed under <a href="#" class="text-white-50">Creative Commons</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="knowledge.js"></script>
+</body>
+</html>
