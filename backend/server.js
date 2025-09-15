@@ -10,7 +10,7 @@ const path = require('path');
 require('dotenv').config();
 
 // Import database connection
-const { connectDB } = require('./config/db');
+const connectDB = require('./config/db');
 
 // Import route handlers
 const authRoutes = require('./routes/auth');
@@ -26,6 +26,12 @@ const PORT = process.env.PORT || 3000;
 
 // Connect to database
 connectDB();
+
+// ✅ CORS middleware (very important: place BEFORE routes)
+app.use(cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true
+}));
 
 // Middleware
 app.use(cors({
