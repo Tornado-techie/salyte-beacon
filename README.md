@@ -4,8 +4,11 @@
 
 Salyte Beacon is a comprehensive web platform that combines artificial intelligence, real-time data monitoring, and community engagement to improve water quality and safety globally. Built with modern web technologies and designed for scalability.
 
-## 🚀 Features
+### Links
+Live Demo: https://salyte-beacon-backend.onrender.com
+GitHub Repository:https://github.com/Tornado-techie/salyte-beacon.git
 
+## 🚀 Features
 ### 🤖 AI Water Assistant
 - Intelligent chatbot for water quality guidance
 - Real-time answers about pH, TDS, turbidity, contamination
